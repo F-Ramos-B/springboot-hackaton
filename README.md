@@ -16,7 +16,9 @@ O banco de dados deverá estar criado no seu PgAdmin, se não estiver eu deixei 
 
 Acesse o pacote config > JpaConfig.java e altere o nome do database no fim da url, o username e o password pra aqueles que você usa no PgAdmin.
 
-# 3 - Para rodar o projeto, clique com o botão direito sobre o HackatonSpringApplication e escolha Run As > Java Application. Ele deverá aparecer no console que está subindo o servidor.
+# 3 - Para rodar o projeto:
+
+Clique com o botão direito sobre o HackatonSpringApplication e escolha Run As > Java Application. Ele deverá aparecer no console que está subindo o servidor.
 
 O url utilizado no aplicativo é:
 
