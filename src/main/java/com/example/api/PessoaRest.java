@@ -30,7 +30,7 @@ public class PessoaRest {
 	 * http://localhost:8080/hackaton-springboot/pessoas/
 	 * 
 	 * URL do swagger:
-	 * http://localhost:8080/hackaton-springboot/swagger-ui.html
+	 * http://localhost:8080/hackaton-springboot/swagger-ui/index.html
 	 */
 	
 	@Autowired
