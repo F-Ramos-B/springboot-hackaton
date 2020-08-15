@@ -12,6 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.model.EnderecoViaCep;
@@ -20,7 +24,7 @@ import com.example.rep.PessoaRepository;
 import com.example.service.utils.ConUtil;
 
 @Service
-public class PessoaService {
+public class PessoaService implements UserDetailsService {
 	
 	@Autowired
 	private PessoaRepository pessoaDAO;
@@ -72,6 +76,21 @@ public class PessoaService {
 	
 	public List<Pessoa> listarPorNomeExato(String nome) {
 		return pessoaDAO.findByNome(nome);
+	}
+	
+	@Override
+	public UserDetails loadUserByUsername(String login) {
+		return pessoaDAO.findByLogin(login).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com esse login."));
+	}
+	
+	public void updateSenhas() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedSenha = encoder.encode("senha");
+		List<Pessoa> all = this.getAll();
+		all.forEach(p -> {
+			p.setSenha(encodedSenha);
+			this.atualizar(p);
+		});
 	}
 	
 	public List<Pessoa> listarPorNomeIgnoreCase(String nome) {

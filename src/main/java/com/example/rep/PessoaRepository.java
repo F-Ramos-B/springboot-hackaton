@@ -1,6 +1,7 @@
 package com.example.rep;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,8 @@ public interface PessoaRepository
 	List<Pessoa> pesquisarPorNomeOuEmailParecido(String nome, String email);
 	
 	List<Pessoa> findByNome(String nome);
+	
+	Optional<Pessoa> findByLogin(String login);
 	
 	List<Pessoa> findByNomeIgnoreCase(String nome);
 	

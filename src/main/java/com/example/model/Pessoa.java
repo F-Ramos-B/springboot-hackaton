@@ -2,6 +2,8 @@ package com.example.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +21,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,7 +44,7 @@ import lombok.NoArgsConstructor;
 		@NamedQuery(name = "Pessoa.findPerfilsAndEnderecosByNome",
 				query = "select  p from Pessoa p  JOIN FETCH p.perfils JOIN FETCH p.enderecos  where p.nome=:nome")
 })
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable, UserDetails {
 
 	
 	/**
@@ -97,5 +102,47 @@ public class Pessoa implements Serializable{
 	)
 	private Set<Perfil> perfils;
 	
+	@NotNull
+	@Column(name = "NO_LOGIN")
+	private String login;
+	
+	@NotNull
+	@Column(name = "NO_SENHA")
+	private String senha;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public String getPassword() {
+		return this.getSenha();
+	}
+
+	@Override
+	public String getUsername() {
+		return this.getLogin();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return this.getSituacao();
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return this.getSituacao();
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return this.getSituacao();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.getSituacao();
+	}
 
 }
