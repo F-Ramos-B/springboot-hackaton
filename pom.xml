@@ -91,13 +91,10 @@
 			<artifactId>springfox-data-rest</artifactId>
 			<version>3.0.0-SNAPSHOT</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.11</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
