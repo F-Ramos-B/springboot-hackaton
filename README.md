@@ -32,7 +32,7 @@ Deixei na pasta src/main/resources um arquivo com as requisições já criadas p
 
 Você pode acessar o Swagger do projeto quando subir o servidor e acessar o seguinte link:
 
-http://localhost:8080/hackaton-springboot/swagger-ui.html
+http://localhost:8080/hackaton-springboot/swagger-ui/index.html
 
 O Swagger vai ser gerado toda vez que o servidor subir, documentando os endpoints que estão na classe PessoaRest. Se fizer mudanças e reiniciar o servidor imagino que elas apareçam lá também; não precisa configurar, ele deve detectar as mudanças automaticamente.
 

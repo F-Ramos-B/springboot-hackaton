@@ -42,24 +42,24 @@ public class PessoaRest {
 	
 	@GetMapping
 	public ResponseEntity<List<Pessoa>> listarPessoas() {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.getAll(), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.getAll(), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/por-id")
 	public ResponseEntity<List<Pessoa>> listarPessoasOrdenarPorId() {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.getAllOrdenarPorId(), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.getAllOrdenarPorId(), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/por")
 	public ResponseEntity<List<Pessoa>> listarOrdenadasPor(
 			@RequestParam(required = false, defaultValue = "true") boolean ascendente,
 			@RequestParam(required = true) String atributo) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.getAll(ascendente, atributo), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.getAll(ascendente, atributo), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Pessoa> recuperarPorId(@PathVariable("id") Long id) throws Exception {
-		return new ResponseEntity<Pessoa>(pessoaService.getById(id), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.getById(id), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/paginado")
@@ -67,7 +67,7 @@ public class PessoaRest {
 				@RequestParam(defaultValue = "0") Integer numeroPagina,
 	            @RequestParam(defaultValue = "10") Integer porPagina
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPaginado(numeroPagina, porPagina), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPaginado(numeroPagina, porPagina), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class PessoaRest {
 				@RequestParam(required = true) String nome,
 				@RequestParam(required = true) String email
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.recuperarPorNomeEEmailExato(nome, email), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.recuperarPorNomeEEmailExato(nome, email), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/filtro-parecido")
@@ -88,21 +88,21 @@ public class PessoaRest {
 				@RequestParam(required = true) String nome,
 				@RequestParam(required = true) String email
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.pesquisarPorNomeOuEmailParecido(nome, email), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.pesquisarPorNomeOuEmailParecido(nome, email), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/nome-exato")
 	public ResponseEntity<List<Pessoa>> listarPorNomeExato(
 				@RequestParam(required = true) String nome
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPorNomeExato(nome), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPorNomeExato(nome), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/nome-parecido")
 	public ResponseEntity<List<Pessoa>> listarPorNomeParecido(
 				@RequestParam(required = true) String nome
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPorNomeParecido(nome), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPorNomeParecido(nome), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/filtro-jpql")
@@ -110,7 +110,7 @@ public class PessoaRest {
 				@RequestParam(required = false) String nome,
 	            @RequestParam(required = false) String email
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.recuperarPorNomeOuEmailJPQL(nome, email), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.recuperarPorNomeOuEmailJPQL(nome, email), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/filtro-spring")
@@ -118,32 +118,32 @@ public class PessoaRest {
 				@RequestParam(required = true) String nome,
 				@RequestParam(required = true) String email
 			) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPorNomeOuEmail(nome, email), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPorNomeOuEmail(nome, email), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/situacao/{situacao}")
 	public ResponseEntity<Set<Pessoa>> listarPorSituacao(@PathVariable("situacao") Boolean situacao) {
-		return new ResponseEntity<Set<Pessoa>>(pessoaService.listarPorSituacao(situacao), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPorSituacao(situacao), new HttpHeaders(), HttpStatus.OK);
 	} // Testando se retorno com set ao invés de list funciona normalmente.
 	
 	@GetMapping("/ativos")
 	public ResponseEntity<List<Pessoa>> listarPessoasAtivas() {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPessoasAtivas(), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPessoasAtivas(), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/inativos")
 	public ResponseEntity<List<Pessoa>> listarPessoasInativas() {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPessoasInativas(), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPessoasInativas(), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Pessoa>> recuperarPorNome(@PathVariable("nome") String nome) {
-		return new ResponseEntity<List<Pessoa>>(pessoaService.listarPorNomeIgnoreCase(nome), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.listarPorNomeIgnoreCase(nome), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@GetMapping("cep/{cep}")
 	public ResponseEntity<EnderecoViaCep> pesquisarCep(@PathVariable("cep") String cep) throws Exception {
-		return new ResponseEntity<EnderecoViaCep>(pessoaService.buscarCep(cep), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.buscarCep(cep), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	/**
@@ -152,7 +152,7 @@ public class PessoaRest {
 	
 	@PostMapping
 	public ResponseEntity<Pessoa> inserir(@RequestBody Pessoa pessoa) {
-		return new ResponseEntity<Pessoa>(pessoaService.inserir(pessoa), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.inserir(pessoa), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/varias")
@@ -166,7 +166,7 @@ public class PessoaRest {
 	
 	@PutMapping
 	public ResponseEntity<Pessoa> atualizar(@RequestBody Pessoa pessoa) {
-		return new ResponseEntity<Pessoa>(pessoaService.inserir(pessoa), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(pessoaService.inserir(pessoa), new HttpHeaders(), HttpStatus.OK);
 	} // Deve ser passado uma pessoa com ID no JSON pra que seja atualizado.
 
 	/**
@@ -176,6 +176,6 @@ public class PessoaRest {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable("id") Long id) {
 		pessoaService.remover(id);
-		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(new HttpHeaders(), HttpStatus.OK);
 	}
 }
